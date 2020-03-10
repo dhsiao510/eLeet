@@ -1,12 +1,10 @@
 var validPalindrome = function(s) {
-  let deleted = false;
   const isParlindrome = function(str,stI, edI) {
     while(edI > stI) {
       if(str[stI++] !== str[edI--]) {
           return false;
       }
     }
-
       return true;
   }
   
