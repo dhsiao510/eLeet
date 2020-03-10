@@ -1,32 +1,23 @@
 var validPalindrome = function(s) {
-    let i = 0; j = s.length -1; deleted = false; 
-    while(i < j) {
-        if(s.charAt(i) === s.charAt(j)) {
-          if(i + 1 < j- 1){
-            i++;
-            j--;
-          } else{
-            break;
-          }
-        } else if ((s.charAt(i + 1) === s.charAt(j)) && !deleted) {
-            deleted = true;
-            if((i + 2) < j - 1) {
-              i = i + 2;
-              j--;
-            } else {
-                break;
-            }
-        } else if ((s.charAt(i)=== s.charAt(j - 1)) && !deleted) {
-            deleted = true;
-            if((j - 2) > i + 1) {
-                j = j - 2;
-                i++;  
-            } else {
-                break;
-            }
-        }  else {
-            return false;
-        }
+  let deleted = false;
+  const isParlindrome = function(str,stI, edI) {
+    while(edI > stI) {
+      if(str[stI++] !== str[edI--]) {
+          return false;
+      }
     }
-    return true; 
+
+      return true;
+  }
+  
+  for(let i = 0, j = s.length - 1; i < j; i++, j--) {
+      if(s.charAt(i) !== s.charAt(j)) {
+          return isParlindrome(s, i, j - 1) || isParlindrome(s, i + 1, j);
+      }
+  }
+  
+  return true;
 };
+
+//Runtime: 84 ms, faster than 73.73% of JavaScript online submissions for Valid Palindrome II.
+//Memory Usage: 42.9 MB, less than 25.00% of JavaScript online submissions for Valid Palindrome II.
