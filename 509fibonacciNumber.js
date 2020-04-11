@@ -16,5 +16,5 @@ var fib = function(N) {
     return onePrior;
 };
 
-//Runtime: 56 ms, faster than 58.74% of JavaScript online submissions for Fibonacci Number.
-//Memory Usage: 33.9 MB, less than 68.18% of JavaScript online submissions for Fibonacci Number.
+//Runtime: 44 ms, faster than 97.62% of JavaScript online submissions for Fibonacci Number.
+//Memory Usage: 33.8 MB, less than 81.82% of JavaScript online submissions for Fibonacci Number.
