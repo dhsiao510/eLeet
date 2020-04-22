@@ -1,21 +1,21 @@
 var permuteUnique = function(nums) {
-    let result = [];
+    let results = [];
     
-    const findPerm = (current, leftover) => {
-        current = current || [];
-        
+    const permu = (current, leftover) => {
+        current = current || '';
+
         if(!leftover.length) {
-            result.push(current);
-        }
-        
+            results.push(current);
+        } 
+
         for(let i = 0; i < leftover.length; i++) {
-            findPerm(current.concat(leftover[i]), leftover.slice(0, i).concat(leftover.slice(i + 1)))
-        }
+            permu('' + current + leftover[i], leftover.slice(0, i).concat(leftover.slice(i + 1)))
+        } 
     }
-    
-    findPerm([], nums)
-    result = [...new Set(result)]  
-    return result;
+    permu('', nums)
+    results = [...new Set(results)].map((el) => el.split(''))
+
+    return results;
 };
 
-//Failed. Not filtering duplicate. The Set does not work due to arrays cannot be compared directly. 
+//Filters duplicate, but does not pass with negative numbers. Need fix. 

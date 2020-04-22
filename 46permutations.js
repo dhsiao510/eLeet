@@ -9,8 +9,7 @@ var permute = function(nums) {
         }
         
         for(let i = 0; i < leftover.length; i++) {
-            const temp = leftover[i];
-            findPerm(curr.concat(temp), leftover.slice(0, i).concat(leftover.slice(i + 1)));
+            findPerm(curr.concat(leftover[i]), leftover.slice(0, i).concat(leftover.slice(i + 1)));
         }
     }
     
