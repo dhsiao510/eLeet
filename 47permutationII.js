@@ -1,21 +1,24 @@
 var permuteUnique = function(nums) {
-    let results = [];
+    nums.sort((a, b) => a - b);
+    let result = [];
     
-    const permu = (current, leftover) => {
-        current = current || '';
-
+    
+    const findPerm = (current, leftover) => {
+        current = current || [];
+        
         if(!leftover.length) {
-            results.push(current);
-        } 
-
+            result.push(current);
+        }
+        
         for(let i = 0; i < leftover.length; i++) {
-            permu('' + current + leftover[i], leftover.slice(0, i).concat(leftover.slice(i + 1)))
-        } 
+            findPerm(current.concat(leftover[i]), leftover.slice(0, i).concat(leftover.slice(i + 1)))
+            while(leftover[i] === leftover[i + 1]) i++;
+        }
     }
-    permu('', nums)
-    results = [...new Set(results)].map((el) => el.split(''))
-
-    return results;
+    
+    findPerm([], nums)
+    return result;
 };
 
-//Filters duplicate, but does not pass with negative numbers. Need fix. 
+//Runtime: 72 ms, faster than 88.10% of JavaScript online submissions for Permutations II.
+//Memory Usage: 37.1 MB, less than 61.11% of JavaScript online submissions for Permutations II.
