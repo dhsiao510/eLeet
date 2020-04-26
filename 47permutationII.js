@@ -1,22 +1,21 @@
 var permuteUnique = function(nums) {
-    nums.sort((a, b) => a - b);
     let result = [];
+    nums.sort((a, b) => a - b);
     
-    
-    const findPerm = (current, leftover) => {
-        current = current || [];
-        
-        if(!leftover.length) {
-            result.push(current);
+    const permutation = (current, leftover) => {
+        if(current.length === nums.length) {
+            result.push(current)
         }
         
         for(let i = 0; i < leftover.length; i++) {
-            findPerm(current.concat(leftover[i]), leftover.slice(0, i).concat(leftover.slice(i + 1)))
-            while(leftover[i] === leftover[i + 1]) i++;
+            permutation(current.concat(leftover[i]), leftover.slice(0, i).concat(leftover.slice(i + 1)));
+            while(leftover[i] === leftover[i + 1]) {
+                i++;
+            }
         }
     }
     
-    findPerm([], nums)
+    permutation([], nums);
     return result;
 };
 
