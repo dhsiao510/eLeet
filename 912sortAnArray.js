@@ -6,13 +6,15 @@ var sortArray = function(nums) {
                 minIndex = j;
             }
         }
-        let temp = nums[i];
-        nums[i] = nums[minIndex];
-        nums[minIndex] = temp;
+        if(i !== minIndex) {
+            let temp = nums[i];
+            nums[i] = nums[minIndex];
+            nums[minIndex] = temp;
+        }
     }
     
     return nums;
 }; 
 
-//Runtime: 1384 ms, faster than 12.42% of JavaScript online submissions for Sort an Array.
-//Memory Usage: 40.4 MB, less than 100.00% of JavaScript online submissions for Sort an Array.
+//Runtime: 1332 ms, faster than 13.03% of JavaScript online submissions for Sort an Array.
+//Memory Usage: 40.3 MB, less than 100.00% of JavaScript online submissions for Sort an Array.
