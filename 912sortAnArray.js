@@ -1,15 +1,21 @@
 var sortArray = function(nums) {
-    for(let i = 1; i < nums.length; i++) {
-        let curr = nums[i]
-        for(var j = i - 1; j > -1 && nums[j] > curr; j--) {
-            nums[j + 1] = nums[j];
+    for(var i = nums.length; i > 0; i--) {
+        var swapped = false;
+        for(let j = 0; j < i - 1; j++) {
+            swapped = true;
+            if(nums[j] > nums[j + 1]) {
+                let temp = nums[j];
+                nums[j] = nums[j + 1];
+                nums[j + 1] = temp;
+            }
         }
-        nums[j + 1] = curr;
+        if(!swapped) {
+            break;
+        }
     }
     
     return nums;
 }; 
 
-
-//Runtime: 680 ms, faster than 16.65% of JavaScript online submissions for Sort an Array.
-//Memory Usage: 40.4 MB, less than 100.00% of JavaScript online submissions for Sort an Array.
+//Runtime: 3620 ms, faster than 8.94% of JavaScript online submissions for Sort an Array.
+//Memory Usage: 40.6 MB, less than 100.00% of JavaScript online submissions for Sort an Array.
