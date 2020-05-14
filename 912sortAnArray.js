@@ -1,22 +1,14 @@
 var sortArray = function(nums) {
-    for(let i = 0; i < nums.length - 1; i++) {
-        let min = i;
-        for(var j = i + 1; j < nums.length; j++) {
-            if(nums[min] > nums[j]) {
-                min = j
-            }
+    for(var i = 1; i < nums.length; i++) {
+        let current = nums[i]
+        for(var j = i - 1; j >= 0 && nums[j] > current; j--) {
+            nums[j + 1] = nums[j];
         }
-        if(min !== i) {
-            let temp = nums[i];
-            nums[i] = nums[min];
-            nums[min] = temp; 
-        }
-
+        nums[j + 1] = current;
     }
     
     return nums;
 }; 
 
-
-//Runtime: 1076 ms, faster than 13.84% of JavaScript online submissions for Sort an Array.
-//Memory Usage: 40.6 MB, less than 100.00% of JavaScript online submissions for Sort an Array.
+//Runtime: 664 ms, faster than 16.15% of JavaScript online submissions for Sort an Array.
+//Memory Usage: 40.3 MB, less than 100.00% of JavaScript online submissions for Sort an Array.
