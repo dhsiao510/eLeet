@@ -1,14 +1,40 @@
 var sortArray = function(nums) {
-    for(var i = 1; i < nums.length; i++) {
-        let current = nums[i]
-        for(var j = i - 1; j >= 0 && nums[j] > current; j--) {
-            nums[j + 1] = nums[j];
+    const merge = (arr1, arr2) => {
+        let result = [];
+        let i = 0;
+        let j = 0;
+        
+        while(i < arr1.length && j < arr2.length) {
+            if(arr1[i] < arr2[j]) {
+                result.push(arr1[i]);
+                i++;
+            } else{
+                result.push(arr2[j]);
+                j++;
+            }
         }
-        nums[j + 1] = current;
+
+        while(i < arr1.length) {
+            result.push(arr1[i]);
+            i++;
+        }
+   
+        while(j < arr2.length) {
+           result.push(arr2[j]);
+           j++;
+        }
+        
+        return result;
     }
     
-    return nums;
+    if(nums.length <= 1) {
+        return nums;
+    }
+    let mid = Math.floor(nums.length / 2);
+    let left = sortArray(nums.slice(0, mid));
+    let right = sortArray(nums.slice(mid));
+    return merge(left, right);
 }; 
 
-//Runtime: 664 ms, faster than 16.15% of JavaScript online submissions for Sort an Array.
-//Memory Usage: 40.3 MB, less than 100.00% of JavaScript online submissions for Sort an Array.
+//Runtime: 248 ms, faster than 19.70% of JavaScript online submissions for Sort an Array.
+//Memory Usage: 47.1 MB, less than 42.86% of JavaScript online submissions for Sort an Array.
