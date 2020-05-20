@@ -1,40 +1,34 @@
 var sortArray = function(nums) {
-    const merge = (arr1, arr2) => {
-        let result = [];
-        let i = 0;
-        let j = 0;
-        
-        while(i < arr1.length && j < arr2.length) {
-            if(arr1[i] < arr2[j]) {
-                result.push(arr1[i]);
-                i++;
-            } else{
-                result.push(arr2[j]);
-                j++;
+    const sortedIndex = ((arr, start = 0, end = arr.length - 1) => {
+        const swap = ((array, idx1, idx2) => {
+            let temp = array[idx1];
+            array[idx1] = array[idx2];
+            array[idx2] = temp;
+        })
+              
+        let pivot = arr[start];
+        let swapId = start;
+        for(let i = start + 1; i <= end; i++) {
+            if(pivot > arr[i]) {
+                swapId++;
+                swap(arr, swapId, i);
             }
         }
-
-        while(i < arr1.length) {
-            result.push(arr1[i]);
-            i++;
-        }
-   
-        while(j < arr2.length) {
-           result.push(arr2[j]);
-           j++;
-        }
-        
-        return result;
-    }
+        swap(arr, start, swapId)
+        return swapId;
+    })
     
-    if(nums.length <= 1) {
-        return nums;
-    }
-    let mid = Math.floor(nums.length / 2);
-    let left = sortArray(nums.slice(0, mid));
-    let right = sortArray(nums.slice(mid));
-    return merge(left, right);
+    const quickSort = ((arr, left = 0, right = arr.length - 1) => {
+        if(left < right) {
+            let pivotIndex = sortedIndex(arr, left, right);
+            quickSort(arr, left, pivotIndex - 1);
+            quickSort(arr, pivotIndex + 1, right);
+        }
+        return arr;
+    })
+    
+    return quickSort(nums);
 }; 
 
-//Runtime: 248 ms, faster than 19.70% of JavaScript online submissions for Sort an Array.
-//Memory Usage: 47.1 MB, less than 42.86% of JavaScript online submissions for Sort an Array.
+//Runtime: 120 ms, faster than 49.61% of JavaScript online submissions for Sort an Array.
+//Memory Usage: 40 MB, less than 100.00% of JavaScript online submissions for Sort an Array.
