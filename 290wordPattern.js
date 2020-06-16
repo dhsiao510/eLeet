@@ -15,3 +15,6 @@ var wordPattern = function(pattern, str) {
     }
     return true;
 };
+
+//Runtime: 68 ms, faster than 29.64% of JavaScript online submissions for Word Pattern.
+//Memory Usage: 33.3 MB, less than 79.14% of JavaScript online submissions for Word Pattern.
