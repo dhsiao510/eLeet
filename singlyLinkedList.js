@@ -45,6 +45,22 @@ class SinglyLinkedList{
 
     shift() {
         if(!this.head) return undefined;
-        
+        let oldHead = this.head; 
+        this.head = this.head.next;
+        this.length--;
+        return oldHead;
+    }
+
+    unshift(val) {
+        newNode = new Node(val);
+        if(!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
     }
 } 
